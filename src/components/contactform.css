@@ -1,0 +1,22 @@
+.contactform{
+    margin-top: 0vh;
+    height: fit-content;
+     padding-top: 20vh;
+     padding-bottom: auto;
+    /* background-image: url(https://i.pinimg.com/originals/18/46/c7/1846c7d802b3bccd548f9f5ee1e0cf06.jpg);
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+
+
+}
+.formdiv{
+    display: flex;
+    align-items: center;
+    align-content: center;
+justify-content: center;
+margin: auto;
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+font-size: 30px;
+
+}
