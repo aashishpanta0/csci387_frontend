@@ -1,4 +1,5 @@
 import React from 'react';
+import {verifyuser} from '../routes/verifyuser';
 import { Form, Input, InputNumber, Button } from 'antd';
 import './contactform.css'
 const layout = {

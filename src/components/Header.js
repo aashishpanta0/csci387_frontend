@@ -1,5 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Menu } from 'antd';
+import {verifyuser} from '../routes/verifyuser';
+ 
+import {Redirect} from 'react-router-dom';
 import {HomeOutlined,
     UsergroupAddOutlined,
   
@@ -13,8 +16,21 @@ const { SubMenu } = Menu;
 const Header=()=> {
   
   const [current, setCurrent]=useState('mail');
+  const [name, setName]=useState('');
+  const [loggedin, setloggedin]= useState(false);
 
-
+useEffect(()=>{
+  
+  verifyuser((result)=>{
+   
+    if(result.status===200){
+      console.log(result)
+      setloggedin(result.data);
+    }
+})},[])
+if(!loggedin){
+  return  <Redirect to = '/login' /> 
+}
    
     return (
       <Menu theme='light'   mode="horizontal" className="navbar">
@@ -36,6 +52,12 @@ const Header=()=> {
            
               <LoginOutlined />
             Login/SignUp
+           
+        </Menu.Item>
+        <Menu.Item  className="navbaritems" onClick={()=>window.location.href="/login"}>
+           
+             
+            {name}
            
         </Menu.Item>
       </Menu>

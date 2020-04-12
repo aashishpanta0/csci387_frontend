@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,11 +9,13 @@ import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import { Select } from 'antd';
-import {loginadmin} from '../routes/adminlogin'
+import {loginadmin} from '../routes/adminlogin';
+import {verifyuser} from '../routes/verifyuser';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import {Redirect} from 'react-router-dom';
 const { Option, OptGroup } = Select;
 
 const useStyles = makeStyles((theme) => ({
@@ -48,11 +50,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Login = props => {
+  useEffect(()=>{
+    verifyuser((result)=>{
+   
+      if(result.status===200){
+        console.log(result)
+        setloggedin(result.data);
+      }
+  })}, []);
 
   const [email, setemail] = useState();
   const [password, setpassword] = useState();
   const [user, setuser]= useState();
-  
+  const [loggedin, setloggedin]= useState(false);
 
   const submitlogin=()=>{
     if(!email.includes('go.olemiss.edu')){
@@ -68,11 +78,20 @@ const Login = props => {
       password:password
     }
     loginadmin(formvalues, (result)=>{
-      console.log(result)
-    })
+      if(result.status===200){
+        
+        localStorage.setItem("token", result.data)
+        setloggedin(true)
+        // window.location.href="http://localhost:3000/"
+      }
+    }
+      
+    )
   }
   const classes = useStyles();
-
+if(loggedin){
+  return  <Redirect to = '/' /> 
+}
   return (<div >
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
