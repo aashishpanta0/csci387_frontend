@@ -1,5 +1,7 @@
 import React from 'react';
 import {verifyuser} from '../routes/verifyuser';
+import Header from './Header';
+import Footer from './Footer';
 import { Form, Input, InputNumber, Button } from 'antd';
 import './contactform.css'
 const layout = {
@@ -22,7 +24,7 @@ const Contact = props => {
         const onFinish = values => {
           console.log(values);
         };
-    return <div className="contactform"><Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+    return<div><Header /> <div className="contactform"><Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
         <div className="formdiv"> Please fill out the form below and we will be in touch shortly!</div> 
     <Form.Item name={['user', 'name']} style={{fontSize:"40px"}} label="Name" rules={[{ required: true, type: 'string' }]}>
       <Input />
@@ -44,7 +46,9 @@ const Contact = props => {
         Submit
       </Button>
     </Form.Item>
-  </Form></div>;
+  </Form></div>
+  <Footer />
+  </div>;
 };
 
  

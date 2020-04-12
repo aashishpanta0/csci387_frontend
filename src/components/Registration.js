@@ -1,8 +1,11 @@
 import React from 'react';
 
+import Footer from './Footer';
+import Header from './Header';
+
 
 const Registration = props => {
-    return <div>This is Registration Page</div>;
+    return <div><Header />This is Registration Page<Footer /></div>;
 };
 
  

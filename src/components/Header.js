@@ -17,18 +17,18 @@ const Header=()=> {
   
   const [current, setCurrent]=useState('mail');
   const [name, setName]=useState('');
-  const [loggedin, setloggedin]= useState(false);
+  const [loggedin, setloggedin]= useState(true);
 
 useEffect(()=>{
   
   verifyuser((result)=>{
    
     if(result.status===200){
-      console.log(result)
       setloggedin(result.data);
     }
-})},[])
+})})
 if(!loggedin){
+
   return  <Redirect to = '/login' /> 
 }
    
@@ -48,15 +48,16 @@ if(!loggedin){
           Contact Us
         </Menu.Item>
         
-        <Menu.Item  className="navbaritems" onClick={()=>window.location.href="/login"}>
+        <Menu.Item  className="navbaritems" onClick={()=>{
+          localStorage.clear()
+          setloggedin(false)
+          }}>
            
               <LoginOutlined />
-            Login/SignUp
+            Logout 
            
         </Menu.Item>
-        <Menu.Item  className="navbaritems" onClick={()=>window.location.href="/login"}>
-           
-             
+        <Menu.Item  className="navbaritems" >
             {name}
            
         </Menu.Item>

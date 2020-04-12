@@ -5,8 +5,7 @@ import './components/Header.css'
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Homepage from './components/Body';
-import Header from './components/Header';
-import Footer from './components/Footer';
+
 import RegistrationPage from './components/Registration';
 import ContactPage from './components/Contact';
 import LoginPage from './components/Login';
@@ -19,7 +18,7 @@ ReactDOM.render(
 
   <BrowserRouter >
   
-    <Header />
+ 
   <Switch>
  <Route exact path='/' component ={Homepage}/>
  <Route path='/registration' component ={RegistrationPage}/>
@@ -29,7 +28,7 @@ ReactDOM.render(
 
 
   </Switch>
-  <Footer />
+  
   
  
   

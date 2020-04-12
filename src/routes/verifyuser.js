@@ -2,7 +2,7 @@ import axios from 'axios';
  const verifyuser= async( callback)=>{
      const token=localStorage.getItem('token')
      if(!token){
-         callback(false)
+         callback({status:200,data:false})
      }
      const config={
          headers:{
