@@ -11,7 +11,8 @@ import ContactPage from './components/Contact';
 import LoginPage from './components/Login';
 import 'antd/dist/antd.css';
 import RegisterNow from './components/RegisterNow';
-
+import Viewcourses from './courses/viewcourses'
+ 
 
 
 ReactDOM.render(
@@ -25,6 +26,8 @@ ReactDOM.render(
  <Route path='/contactus' component ={ContactPage}/>
  <Route path='/login' component ={LoginPage}/>
  <Route path='/register' component ={RegisterNow}/>
+ <Route path='/viewcourses' component ={Viewcourses}/>
+ 
 
 
   </Switch>

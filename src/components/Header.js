@@ -24,7 +24,8 @@ useEffect(()=>{
   verifyuser((result)=>{
    
     if(result.status===200){
-      setloggedin(result.data);
+      setName(result.data.name)
+      setloggedin(result.data.isValid);
     }
 })})
 if(!loggedin){
@@ -57,7 +58,7 @@ if(!loggedin){
             Logout 
            
         </Menu.Item>
-        <Menu.Item  className="navbaritems" >
+        <Menu.Item  className="navbaritems" disabled={true}>
             {name}
            
         </Menu.Item>

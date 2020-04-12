@@ -13,6 +13,7 @@ import {createuser} from '../routes/adminroutes'
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import {Redirect} from 'react-router-dom';
  
 const { Option} = Select;
 
@@ -45,6 +46,8 @@ const RegisterNow = props => {
   const [message, errormessage] = useState();
   const [email, setemail] = useState();
   const [user,setuser]=useState();
+  const [terms, setterms]=useState(false);
+  const [signup, setsignup]=useState(false);
 
 const submitsignup=()=>{
   if(!email.includes('go.olemiss.edu')){
@@ -54,6 +57,11 @@ const submitsignup=()=>{
    if(user!=="Student" && user!=="Department" && user!=="Teacher"){
      return alert('Please select a user type.');
    }
+   if(!terms){
+     return alert('Please agree to terms and conditions by checking the box');
+   }
+   setsignup(true);
+   
   
   const formValues={
     name:firstname+" "+lastname,
@@ -66,14 +74,17 @@ const submitsignup=()=>{
     console.log(result)
   })
 
-   
+ 
 
 }
 
 
+
   const classes = useStyles();
 
-
+  if(signup){
+    return <Redirect to= '/login' />
+  }
   return <div> <Container component="main" maxWidth="xs">
     <CssBaseline />
     <div className={classes.paper}>
@@ -194,6 +205,9 @@ const submitsignup=()=>{
           <p style={{ color: 'red' }}> {message}</p>
           <Grid item xs={12}>
             <FormControlLabel
+            onChange={()=>setterms(true)
+
+            }
               control={<Checkbox value="allowExtraEmails" color="primary" />}
               label="I agree to all terms and conditions."
             />
