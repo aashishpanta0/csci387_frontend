@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
+import Footer from './Footer'
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -94,7 +95,7 @@ const Login = props => {
 if(loggedin){
   return  <Redirect to = '/' /> 
 }
-  return (<div >
+  return (<div style={{display:'flex', flexDirection:'column', minHeight:'100vh'}}><div style={{flexGrow:1}}>
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
@@ -116,7 +117,7 @@ if(loggedin){
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Your OleMiss Email Address"
               name="email"
               autoComplete="email"
               autoFocus
@@ -173,7 +174,10 @@ if(loggedin){
           </form>
         </div>
       </Grid>
-    </Grid></div>
+    </Grid>
+    </div>
+    <Footer />
+    </div>
   );
 
 

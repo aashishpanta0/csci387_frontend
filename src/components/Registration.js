@@ -15,7 +15,7 @@ const { SubMenu } = Menu;
 const Registration = props => {
     const [viewtab, setviewtab]= useState('View All Courses')
      
-    return (<div><Header />
+    return (<div style={{display:'flex', flexDirection:'column', minHeight:'100vh'}}><div style={{flexGrow:1}}><Header />
       <Menu   mode="horizontal">
         <Menu.Item key="mail" onClick={()=>{ setviewtab('View All Courses')}}>
           <FolderViewOutlined />
@@ -23,7 +23,7 @@ const Registration = props => {
         </Menu.Item>
         <Menu.Item key="app" onClick={()=>{ setviewtab('Add Courses')}}>
           <AppstoreAddOutlined />
-         Add Courses
+        My Favourites
         </Menu.Item>
         
         <Menu.Item key="alipay" onClick={()=>{ setviewtab('My Courses')}}>
@@ -39,7 +39,7 @@ const Registration = props => {
     
      
     <RegistrationTabs display={viewtab} />
-    
+    </div>
     <Footer />
     </div>);
 };

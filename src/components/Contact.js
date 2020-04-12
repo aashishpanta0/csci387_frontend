@@ -24,7 +24,7 @@ const Contact = props => {
         const onFinish = values => {
           console.log(values);
         };
-    return<div><Header /> <div className="contactform"><Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+    return(<div style={{display:'flex', flexDirection:'column', minHeight:'100vh'}}><div style={{flexGrow:1}}><Header /> <div className="contactform"><Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
         <div className="formdiv"> Please fill out the form below and we will be in touch shortly!</div> 
     <Form.Item name={['user', 'name']} style={{fontSize:"40px"}} label="Name" rules={[{ required: true, type: 'string' }]}>
       <Input />
@@ -47,8 +47,9 @@ const Contact = props => {
       </Button>
     </Form.Item>
   </Form></div>
+  </div>
   <Footer />
-  </div>;
+  </div>);
 };
 
  

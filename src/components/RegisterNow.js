@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Redirect} from 'react-router-dom';
+import Footer from './Footer'
  
 const { Option} = Select;
 
@@ -85,7 +86,7 @@ const submitsignup=()=>{
   if(signup){
     return <Redirect to= '/login' />
   }
-  return <div> <Container component="main" maxWidth="xs">
+  return <div style={{display:'flex', flexDirection:'column', minHeight:'100vh'}}><div style={{flexGrow:1}}><Container component="main" maxWidth="xs">
     <CssBaseline />
     <div className={classes.paper}>
       <Avatar className={classes.avatar}>
@@ -159,7 +160,7 @@ const submitsignup=()=>{
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Your OleMiss Email Address"
               name="email"
               autoComplete="email"
             />
@@ -234,7 +235,9 @@ const submitsignup=()=>{
     <Box mt={5}>
 
     </Box>
-  </Container></div>;
+  </Container></div>
+  <Footer />
+  </div>;
 };
 
 

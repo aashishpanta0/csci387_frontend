@@ -29,7 +29,7 @@ const Body =() => {
   <span style={{fontSize:30, cursor: "pointer"}} onClick={()=>window.location.href='./login'} onMouseOver="">You can just sign up here, and you will be ready to register your class shortly!</span> ]
 
 
-    return (<div><Header /><div className='bodydiv'></div>
+    return (<div style={{display:'flex', flexDirection:'column', minHeight:'100vh'}}><div style={{flexGrow:1}}><Header /><div className='bodydiv'></div>
         <div className="bodymain">Olemiss Registrar is dedicated to make the process of registering classes easier for students. We provide students with an easy way to manage classes so that they can focus on building their career. Furthermore, Olemiss Registrar also supports teacher side access to manage their own courses, students etc. If you don't have an account yet sign up and get access to all our features.</div>
         <div className='cardDiv'>{info.map(message=>{
           return( 
@@ -41,6 +41,7 @@ const Body =() => {
     
     
     <Footer />
+    </div>
     </div>);
 
 
