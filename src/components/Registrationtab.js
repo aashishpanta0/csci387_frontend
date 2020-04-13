@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { courseroute } from '../routes/courseroute';
 import { addcourse } from '../routes/addcourse';
-import { returncourses } from '../routes/returncourses'
+
+import Registeredcourses from './Registeredcourses'
 import Header from './Header';
 import { Table, Tag } from 'antd';
 
@@ -11,7 +12,7 @@ const Registrationtab = props => {
     const [addcourses, setaddcourses] = useState([]);
 
     const [courses, setCourses] = useState(null);
-    const [mycourses, setmycourses] = useState(null);
+    
     const register = () => {
 
         const coursevalues = {
@@ -25,12 +26,7 @@ const Registrationtab = props => {
                
             }
         })
-        const localtoken = { token: localStorage.getItem('token') }
-        returncourses(localtoken, (result) => {
-            
-            setmycourses(result.data)
-           
-        })
+        
         // window.location.reload();
 
     }
@@ -191,59 +187,8 @@ const Registrationtab = props => {
     }
     else if (tabToload === 'My Courses') {
         return (<div>
-             
-            <table style={{ width: '90%', margin: 'auto' }}>
-                <tr>
-                    <th>Course Name</th>
-                    <th>Course Id</th>
-                    <th>Credit Hours</th>
-                    <th>Section</th>
-                    <th>Building</th>
-                    <th>Room</th>
-                    <th>Students Enrolled</th>
-                    <th>Capacity</th>
-
-                    <th>Professor</th>
-                     
-                </tr>
-
-                {mycourses ? mycourses.map((myCoursesId) => {
-                    
-                    const courseInfo=courses.filter(eachCourse=>eachCourse.courseid===myCoursesId.Courses_courseid)
-                    
-                    return (
-                        <tr>
-                            <td>{courseInfo[0].course_name}</td>
-                            <td>{courseInfo[0].courseid}</td>
-                            <td>{courseInfo[0].credithours}</td>
-                            <td>{courseInfo[0].section}</td>
-                            <td>{courseInfo[0].building}</td>
-                            <td>{courseInfo[0].room}</td>
-                            <td>{courseInfo[0].studentsenrolled}</td>
-                            <td>{courseInfo[0].capacity}</td>
-                            <td>{courseInfo[0].teacher}</td>
-
-
-                        </tr>
-                    )
-
-
-
-
-
-                }
-
-                ) :
-                    null
-
-
-
-
-                }
-
-
-
-            </table>
+             <Registeredcourses mycourses={courses}/>
+           
 
 
         </div>)
