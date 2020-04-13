@@ -1,23 +1,49 @@
 import React, { useState, useEffect } from 'react';
-import { courseroute } from '../routes/courseroute'
-
+import { courseroute } from '../routes/courseroute';
+import { addcourse } from '../routes/addcourse';
+import { returncourses } from '../routes/returncourses'
+import Header from './Header';
 import { Table, Tag } from 'antd';
 
 
 const Registrationtab = props => {
 
-    const [addcourses, setaddcourses]=useState([]);
+    const [addcourses, setaddcourses] = useState([]);
+
+    const [courses, setCourses] = useState(null);
+    const [mycourses, setmycourses] = useState(null);
+    const register = () => {
+
+        const coursevalues = {
+            courseid: addcourses.map((eachCourse) => eachCourse.courseid),
+            token: localStorage.getItem('token')
+        }
+
+
+        addcourse(coursevalues, (result) => {
+            if (result.status === 200) {
+               
+            }
+        })
+        const localtoken = { token: localStorage.getItem('token') }
+        returncourses(localtoken, (result) => {
+            
+            setmycourses(result.data)
+           
+        })
+        // window.location.reload();
+
+    }
     
-    const [courses, setCourses] = useState(null)
     useEffect(() => {
         courseroute((result) => {
             if (result.status === 200) {
-                console.log(result.data)
                 setCourses(result.data)
             }
 
         })
-
+        
+        
 
     }, [])
     const columns = [
@@ -25,7 +51,7 @@ const Registrationtab = props => {
             title: 'Course Id',
             dataIndex: 'courseid',
             key: 'courseid',
-            //   render: text => <a>{text}</a>,
+            
         },
         {
             title: 'Course Name',
@@ -75,7 +101,7 @@ const Registrationtab = props => {
         return (<div>
 
             {courses === null ? null :
-                <table style={{width:'90%',margin:'auto'}}>
+                <table style={{ width: '90%', margin: 'auto' }}>
                     <tr>
                         <th>Course Name</th>
                         <th>Course Id</th>
@@ -85,7 +111,7 @@ const Registrationtab = props => {
                         <th>Room</th>
                         <th>Students Enrolled</th>
                         <th>Capacity</th>
-                        
+
                         <th>Professor</th>
                         <th>Action</th>
                     </tr>
@@ -101,12 +127,12 @@ const Registrationtab = props => {
                                 <td>{eachCourse.studentsenrolled}</td>
                                 <td>{eachCourse.capacity}</td>
                                 <td>{eachCourse.teacher}</td>
-                                <button style={{width:'auto', height:'auto'}} onClick={()=>{
-                                    const index=addcourses.findIndex((course)=>course.courseid===eachCourse.courseid)
-                                    if(index===-1){
+                                <button style={{ width: 'auto', height: 'auto' }} onClick={() => {
+                                    const index = addcourses.findIndex((course) => course.courseid === eachCourse.courseid)
+                                    if (index === -1) {
                                         setaddcourses([...addcourses, eachCourse])
-                                    }else{
-                                        alert("Course already in cart.")
+                                    } else {
+                                        alert("Course you are trying to add is already in 'My Favourites'.")
                                     }
 
                                 }}>Add</button>
@@ -115,52 +141,112 @@ const Registrationtab = props => {
                         )
                     })}
                 </table>
-            }}
+            }
+
 
         </div>
 
         )
     }
     else if (tabToload === 'Add Courses') {
-    return (<div>
-                       <table style={{width:'90%',margin:'auto'}}>
-                    <tr>
-                        <th>Course Name</th>
-                        <th>Course Id</th>
-                        <th>Credit Hours</th>
-                        <th>Section</th>
-                        <th>Building</th>
-                        <th>Room</th>
-                        <th>Students Enrolled</th>
-                        <th>Capacity</th>
-                        
-                        <th>Professor</th>
-                        <th>Action</th>
-                    </tr>
-                    {addcourses.map((course) => {
-                        return (
-                            <tr>
-                                <td>{course.course_name}</td>
-                                <td>{course.courseid}</td>
-                                <td>{course.credithours}</td>
-                                <td>{course.section}</td>
-                                <td>{course.building}</td>
-                                <td>{course.room}</td>
-                                <td>{course.studentsenrolled}</td>
-                                <td>{course.capacity}</td>
-                                <td>{course.teacher}</td>
-                                <button style={{width:'auto', height:'auto'}}  onClick={()=>{
-                                    setaddcourses( addcourses.filter((eachCourse)=>eachCourse.courseid!==course.courseid))
-                                }}>Remove</button>
+        return (<div>
+            <table style={{ width: '90%', margin: 'auto' }}>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Course Id</th>
+                    <th>Credit Hours</th>
+                    <th>Section</th>
+                    <th>Building</th>
+                    <th>Room</th>
+                    <th>Students Enrolled</th>
+                    <th>Capacity</th>
 
-                            </tr>
-                        )
-                    })}
-                </table>
+                    <th>Professor</th>
+                    <th>Action</th>
+                </tr>
+                {addcourses.map((course) => {
+                    return (
+                        <tr>
+                            <td>{course.course_name}</td>
+                            <td>{course.courseid}</td>
+                            <td>{course.credithours}</td>
+                            <td>{course.section}</td>
+                            <td>{course.building}</td>
+                            <td>{course.room}</td>
+                            <td>{course.studentsenrolled}</td>
+                            <td>{course.capacity}</td>
+                            <td>{course.teacher}</td>
+                            <button style={{ width: 'auto', height: 'auto' }} onClick={() => {
+                                setaddcourses(addcourses.filter((eachCourse) => eachCourse.courseid !== course.courseid))
+                            }}>Remove</button>
+
+                        </tr>
+                    )
+                })}
+            </table>
+            <button onClick={() => { register() }} style={{ height: '40px', width: 'auto', backgroundColor: '#258013', display: 'flex', color: 'white', marginRight: '6%', marginTop: '5%', float: 'right', alignItems: 'center', justifyContent: 'center' }}>
+                Click to Register
+                </button>
         </div>)
     }
     else if (tabToload === 'My Courses') {
-        return (<div>This is my courses tab</div>)
+        return (<div>
+             
+            <table style={{ width: '90%', margin: 'auto' }}>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Course Id</th>
+                    <th>Credit Hours</th>
+                    <th>Section</th>
+                    <th>Building</th>
+                    <th>Room</th>
+                    <th>Students Enrolled</th>
+                    <th>Capacity</th>
+
+                    <th>Professor</th>
+                     
+                </tr>
+
+                {mycourses ? mycourses.map((myCoursesId) => {
+                    
+                    const courseInfo=courses.filter(eachCourse=>eachCourse.courseid===myCoursesId.Courses_courseid)
+                    
+                    return (
+                        <tr>
+                            <td>{courseInfo[0].course_name}</td>
+                            <td>{courseInfo[0].courseid}</td>
+                            <td>{courseInfo[0].credithours}</td>
+                            <td>{courseInfo[0].section}</td>
+                            <td>{courseInfo[0].building}</td>
+                            <td>{courseInfo[0].room}</td>
+                            <td>{courseInfo[0].studentsenrolled}</td>
+                            <td>{courseInfo[0].capacity}</td>
+                            <td>{courseInfo[0].teacher}</td>
+
+
+                        </tr>
+                    )
+
+
+
+
+
+                }
+
+                ) :
+                    null
+
+
+
+
+                }
+
+
+
+            </table>
+
+
+        </div>)
     }
     return (
         <div>
