@@ -17,7 +17,10 @@ const Registration = props => {
      
     return (<div style={{display:'flex', flexDirection:'column', minHeight:'100vh'}}><div style={{flexGrow:1}}><Header />
       <Menu   mode="horizontal">
-        <Menu.Item key="mail" onClick={()=>{ setviewtab('View All Courses')}}>
+        <Menu.Item key="mail" onClick={()=>{ 
+          setviewtab('View All Courses');
+          
+          }}>
           <FolderViewOutlined />
           View All Courses
         </Menu.Item>

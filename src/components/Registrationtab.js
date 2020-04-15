@@ -27,7 +27,7 @@ const Registrationtab = props => {
             }
         })
         
-        // window.location.reload();
+        window.alert('Your courses have been registered successfully')
 
     }
     
@@ -127,6 +127,7 @@ const Registrationtab = props => {
                                     const index = addcourses.findIndex((course) => course.courseid === eachCourse.courseid)
                                     if (index === -1) {
                                         setaddcourses([...addcourses, eachCourse])
+                                        alert('Course added to "My Favourites"');
                                     } else {
                                         alert("Course you are trying to add is already in 'My Favourites'.")
                                     }

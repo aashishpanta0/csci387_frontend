@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { returncourses } from '../routes/returncourses';
+import {  removecourse} from '../routes/removecourse';
+
 
 const Registeredcourses = props => {
 
     const [mycourses, setmycourses] = useState(null);
+     
 
     useEffect(() => {
         const localtoken = { token: localStorage.getItem('token') }
@@ -12,6 +15,8 @@ const Registeredcourses = props => {
             setmycourses(result.data)
 
         })
+
+        
     })
 
     return <div>
@@ -25,8 +30,10 @@ const Registeredcourses = props => {
                 <th>Room</th>
                 <th>Students Enrolled</th>
                 <th>Capacity</th>
+                <th>Time</th>
 
                 <th>Professor</th>
+                <th> Action</th>
 
             </tr>
 
@@ -44,7 +51,27 @@ const Registeredcourses = props => {
                         <td>{courseInfo[0].room}</td>
                         <td>{courseInfo[0].studentsenrolled}</td>
                         <td>{courseInfo[0].capacity}</td>
+                        <td>{courseInfo[0].time}</td>
                         <td>{courseInfo[0].teacher}</td>
+                        <td> <button style={{backgroundColor:'red', color:'white'}} onClick={()=>{ 
+                            const deletecourseid = courseInfo[0].courseid;
+                            console.log(deletecourseid)
+                            const remove=()=>{
+                                const courseinfo={
+                                    token: localStorage.getItem('token'),
+                                    courseid: deletecourseid,
+                                    
+                                }
+                                removecourse(courseinfo, (result)=>{
+                                    if(result.status===200){
+                                        console.log("Removed from schedule")
+                                    }
+                                })
+                                alert('Your course has been removed successfully')
+                            }
+                            remove();
+                            
+                            }}>Remove From Schedule</button></td>
 
 
                     </tr>
