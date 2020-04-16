@@ -17,12 +17,14 @@ const Registrationtab = props => {
 
         const coursevalues = {
             courseid: addcourses.map((eachCourse) => eachCourse.courseid),
+            time: addcourses.map((eachCourse) => eachCourse.time),
             token: localStorage.getItem('token')
         }
 
 
         addcourse(coursevalues, (result) => {
             if (result.status === 200) {
+                console.log(result.data)
                
             }
         })
@@ -103,6 +105,7 @@ const Registrationtab = props => {
                         <th>Course Id</th>
                         <th>Credit Hours</th>
                         <th>Section</th>
+                        <th>Time</th>
                         <th>Building</th>
                         <th>Room</th>
                         <th>Students Enrolled</th>
@@ -114,16 +117,17 @@ const Registrationtab = props => {
                     {courses.map((eachCourse) => {
                         return (
                             <tr>
-                                <td>{eachCourse.course_name}</td>
-                                <td>{eachCourse.courseid}</td>
-                                <td>{eachCourse.credithours}</td>
-                                <td>{eachCourse.section}</td>
-                                <td>{eachCourse.building}</td>
-                                <td>{eachCourse.room}</td>
-                                <td>{eachCourse.studentsenrolled}</td>
-                                <td>{eachCourse.capacity}</td>
-                                <td>{eachCourse.teacher}</td>
-                                <button style={{ width: 'auto', height: 'auto' }} onClick={() => {
+                                <td style={{border:'1px solid black'}}>{eachCourse.course_name}</td>
+                                <td style={{border:'1px solid black'}} >{eachCourse.courseid}</td>
+                                <td style={{border:'1px solid black'}} >{eachCourse.credithours}</td>
+                                <td style={{border:'1px solid black'}} >{eachCourse.section}</td>
+                                <td style={{border:'1px solid black'}} >{eachCourse.time}</td>
+                                <td style={{border:'1px solid black'}} >{eachCourse.building}</td>
+                                <td style={{border:'1px solid black'}} >{eachCourse.room}</td>
+                                <td style={{border:'1px solid black'}} >{eachCourse.studentsenrolled}</td>
+                                <td style={{border:'1px solid black'}}>{eachCourse.capacity}</td>
+                                <td style={{border:'1px solid black'}} >{eachCourse.teacher}</td>
+                                <button style={{ width: 'auto', height: 'auto',cursor:'pointer', border:'1px solid green' }} onClick={() => {
                                     const index = addcourses.findIndex((course) => course.courseid === eachCourse.courseid)
                                     if (index === -1) {
                                         setaddcourses([...addcourses, eachCourse])
@@ -153,6 +157,7 @@ const Registrationtab = props => {
                     <th>Course Id</th>
                     <th>Credit Hours</th>
                     <th>Section</th>
+                    <th>Time</th>
                     <th>Building</th>
                     <th>Room</th>
                     <th>Students Enrolled</th>
@@ -164,15 +169,16 @@ const Registrationtab = props => {
                 {addcourses.map((course) => {
                     return (
                         <tr>
-                            <td>{course.course_name}</td>
-                            <td>{course.courseid}</td>
-                            <td>{course.credithours}</td>
-                            <td>{course.section}</td>
-                            <td>{course.building}</td>
-                            <td>{course.room}</td>
-                            <td>{course.studentsenrolled}</td>
-                            <td>{course.capacity}</td>
-                            <td>{course.teacher}</td>
+                            <td style={{border:'1px solid black'}}>{course.course_name}</td>
+                            <td style={{border:'1px solid black'}}>{course.courseid}</td>
+                            <td style={{border:'1px solid black'}}>{course.credithours}</td>
+                            <td style={{border:'1px solid black'}}>{course.section}</td>
+                            <td style={{border:'1px solid black'}}>{course.time}</td>
+                            <td style={{border:'1px solid black'}}>{course.building}</td>
+                            <td style={{border:'1px solid black'}}>{course.room}</td>
+                            <td style={{border:'1px solid black'}}>{course.studentsenrolled}</td>
+                            <td style={{border:'1px solid black'}}>{course.capacity}</td>
+                            <td style={{border:'1px solid black'}}>{course.teacher}</td>
                             <button style={{ width: 'auto', height: 'auto' }} onClick={() => {
                                 setaddcourses(addcourses.filter((eachCourse) => eachCourse.courseid !== course.courseid))
                             }}>Remove</button>
@@ -181,7 +187,7 @@ const Registrationtab = props => {
                     )
                 })}
             </table>
-            <button onClick={() => { register() }} style={{ height: '40px', width: 'auto', backgroundColor: '#258013', display: 'flex', color: 'white', marginRight: '6%', marginTop: '5%', float: 'right', alignItems: 'center', justifyContent: 'center' }}>
+            <button onClick={() => { register() }} style={{ cursor:'pointer',height: '40px', width: 'auto', backgroundColor: '#258013', display: 'flex', color: 'white', marginRight: '6%', marginTop: '5%', float: 'right', alignItems: 'center', justifyContent: 'center' }}>
                 Click to Register
                 </button>
         </div>)

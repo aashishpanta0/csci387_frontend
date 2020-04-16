@@ -43,17 +43,18 @@ const Registeredcourses = props => {
 
                 return (
                     <tr>
-                        <td>{courseInfo[0].course_name}</td>
-                        <td>{courseInfo[0].courseid}</td>
-                        <td>{courseInfo[0].credithours}</td>
-                        <td>{courseInfo[0].section}</td>
-                        <td>{courseInfo[0].building}</td>
-                        <td>{courseInfo[0].room}</td>
-                        <td>{courseInfo[0].studentsenrolled}</td>
-                        <td>{courseInfo[0].capacity}</td>
-                        <td>{courseInfo[0].time}</td>
-                        <td>{courseInfo[0].teacher}</td>
-                        <td> <button style={{backgroundColor:'red', color:'white'}} onClick={()=>{ 
+                        <td style={{border:'1px solid black'}}>{courseInfo[0].course_name}</td>
+                        <td style={{border:'1px solid black'}}>{courseInfo[0].courseid}</td>
+                        <td style={{border:'1px solid black'}}>{courseInfo[0].credithours}</td>
+                        <td style={{border:'1px solid black'}}>{courseInfo[0].section}</td>
+                        <td style={{border:'1px solid black'}}>{courseInfo[0].building}</td>
+                        <td style={{border:'1px solid black'}}>{courseInfo[0].room}</td>
+                        <td style={{border:'1px solid black'}}>{courseInfo[0].studentsenrolled}</td>
+                        <td style={{border:'1px solid black'}}>{courseInfo[0].capacity}</td>
+                        <td style={{border:'1px solid black'}}>{courseInfo[0].time}</td>
+                        <td style={{border:'1px solid black'}}>{courseInfo[0].teacher}</td>
+                        <td style={{border:'1px solid black'}}> 
+                        <button style={{backgroundColor:'red', color:'white', cursor:'pointer'}} onClick={()=>{ 
                             const deletecourseid = courseInfo[0].courseid;
                             console.log(deletecourseid)
                             const remove=()=>{

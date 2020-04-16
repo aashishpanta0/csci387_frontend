@@ -33,7 +33,7 @@ const Contact = props => {
       <Input />
     </Form.Item>
     <Form.Item name={['user', 'Phone Number']} label="Phone Number" rules={[{ required: true, type: 'number'}]}>
-      <InputNumber />
+      <Input />
     </Form.Item>
    
      

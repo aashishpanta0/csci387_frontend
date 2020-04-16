@@ -58,6 +58,7 @@ const Login = props => {
       if(result.status===200){
         console.log(result)
         setloggedin(result.data);
+        
       }
   })}, []);
 
@@ -83,7 +84,8 @@ const Login = props => {
     loginadmin(formvalues, (result)=>{
       if(result.status===200){
         
-        localStorage.setItem("token", result.data)
+        localStorage.setItem("token", result.data.token)
+        localStorage.setItem("usertype", result.data.user);
         setloggedin(true)
         // window.location.href="http://localhost:3000/"
       }

@@ -1,16 +1,15 @@
 import axios from 'axios';
- const removecourse= async(courseinfo, callback)=>{
+ const adminregistercourse= async(formvalues, callback)=>{
      const config={
          headers:{
              'Content-Type':'application/json'
          }
      }
-    const url='http://localhost:5000/student/removecourses'
-    await axios.post(url, courseinfo,config)
+    const url='http://localhost:5000/admin/registercourses'
+    await axios.post(url, formvalues,config)
     .then((result)=>callback(result))
     .catch((error)=>callback(error))
     
  }
 
- export {removecourse};
- 
+ export {adminregistercourse};
