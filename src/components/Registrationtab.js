@@ -25,11 +25,13 @@ const Registrationtab = props => {
         addcourse(coursevalues, (result) => {
             if (result.status === 200) {
                 console.log(result.data)
+                window.location.reload();
                
             }
         })
         
-        window.alert('Your courses have been registered successfully')
+
+        window.alert('Your course has been registered if the time you selected is free in your schedule')
 
     }
     

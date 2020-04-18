@@ -29,7 +29,7 @@ const Adminregistration = props => {
             if (result.status === 200) {
                 console.log(result)
                 
-                alert('Your course has been registered if the time you selected is free in your schedule')
+                alert('Your course has been registered to the database.')
                 window.location.reload();
             }
         })

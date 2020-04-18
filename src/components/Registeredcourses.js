@@ -66,6 +66,7 @@ const Registeredcourses = props => {
                                 removecourse(courseinfo, (result)=>{
                                     if(result.status===200){
                                         console.log("Removed from schedule")
+                                        window.location.reload();
                                     }
                                 })
                                 alert('Your course has been removed successfully')
