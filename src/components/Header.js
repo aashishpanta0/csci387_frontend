@@ -102,6 +102,9 @@ if(usertype==='Department'){
   );
 
 }
+else {
+  return null;
+}
    
     
   
