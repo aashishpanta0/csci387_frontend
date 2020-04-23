@@ -65,7 +65,7 @@ const Adminregistration = props => {
         <div style={{ display: 'flex', justifyContent: 'center', fontSize: '25px', fontFamily: 'bold' }}>Please register the courses below:</div>
         <Form {...layout} name="nest-messages" validateMessages={validateMessages} onFinish={submitcourse}>
             <Form.Item
-                
+                     
                 name="courseid"
                 label="Course ID"
 

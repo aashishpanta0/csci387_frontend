@@ -5,6 +5,7 @@ import { addcourse } from '../routes/addcourse';
 import Registeredcourses from './Registeredcourses'
 import Header from './Header';
 import { Table, Tag } from 'antd';
+import { Card } from 'antd';
 
 
 const Registrationtab = props => {
@@ -12,7 +13,7 @@ const Registrationtab = props => {
     const [addcourses, setaddcourses] = useState([]);
 
     const [courses, setCourses] = useState(null);
-    
+
     const register = () => {
 
         const coursevalues = {
@@ -26,15 +27,15 @@ const Registrationtab = props => {
             if (result.status === 200) {
                 console.log(result.data)
                 window.location.reload();
-               
+
             }
         })
-        
+
 
         window.alert('Your course has been registered if the time you selected is free in your schedule')
 
     }
-    
+
     useEffect(() => {
         courseroute((result) => {
             if (result.status === 200) {
@@ -42,56 +43,11 @@ const Registrationtab = props => {
             }
 
         })
-        
-        
+
+
 
     }, [])
-    const columns = [
-        {
-            title: 'Course Id',
-            dataIndex: 'courseid',
-            key: 'courseid',
-            
-        },
-        {
-            title: 'Course Name',
-            dataIndex: 'course_name',
-            key: 'course_name',
-        },
-        {
-            title: 'Time',
-            dataIndex: 'time',
-            key: 'time',
-        },
-        {
-            title: 'Section',
-            dataIndex: 'section',
-            key: 'tsection',
-        },
-        {
-            title: 'Room',
-            dataIndex: 'room',
-            key: 'room',
-        },
-        {
-            title: 'Teacher',
-            dataIndex: 'teacher',
-            key: 'teacher',
-        }, {
-            title: 'building',
-            dataIndex: 'building',
-            key: 'building',
-        },
-        {
-            title: 'Credit Hours',
-            dataIndex: 'credithours',
-            key: 'credithours',
-        }, {
-            title: 'Capacity',
-            dataIndex: 'capacity',
-            key: 'capacity',
-        }
-    ]
+
     const data = [{
 
     }]
@@ -101,49 +57,48 @@ const Registrationtab = props => {
         return (<div>
 
             {courses === null ? null :
-                <table style={{ width: '90%', margin: 'auto' }}>
-                    <tr>
-                        <th>Course Name</th>
-                        <th>Course Id</th>
-                        <th>Credit Hours</th>
-                        <th>Section</th>
-                        <th>Time</th>
-                        <th>Building</th>
-                        <th>Room</th>
-                        <th>Students Enrolled</th>
-                        <th>Capacity</th>
 
-                        <th>Professor</th>
-                        <th>Action</th>
-                    </tr>
-                    {courses.map((eachCourse) => {
+                
+                    courses.map((eachCourse) => {
                         return (
-                            <tr>
-                                <td style={{border:'1px solid black'}}>{eachCourse.course_name}</td>
-                                <td style={{border:'1px solid black'}} >{eachCourse.courseid}</td>
-                                <td style={{border:'1px solid black'}} >{eachCourse.credithours}</td>
-                                <td style={{border:'1px solid black'}} >{eachCourse.section}</td>
-                                <td style={{border:'1px solid black'}} >{eachCourse.time}</td>
-                                <td style={{border:'1px solid black'}} >{eachCourse.building}</td>
-                                <td style={{border:'1px solid black'}} >{eachCourse.room}</td>
-                                <td style={{border:'1px solid black'}} >{eachCourse.studentsenrolled}</td>
-                                <td style={{border:'1px solid black'}}>{eachCourse.capacity}</td>
-                                <td style={{border:'1px solid black'}} >{eachCourse.teacher}</td>
-                                <button style={{ width: 'auto', height: 'auto',cursor:'pointer', border:'1px solid green' }} onClick={() => {
-                                    const index = addcourses.findIndex((course) => course.courseid === eachCourse.courseid)
-                                    if (index === -1) {
-                                        setaddcourses([...addcourses, eachCourse])
-                                        alert('Course added to "My Favourites"');
-                                    } else {
-                                        alert("Course you are trying to add is already in 'My Favourites'.")
-                                    }
+                            <div style={{display:'flex', justifyContent:'center'}}>
+                            <Card title={eachCourse.course_name} type="inner" style={{ display: 'inline-block', justifyContent: 'left', alignItems: 'left', width: '80%', marginTop: '5px', boxShadow: "1px 3px 1px #e4f59f" }} >
+                                <p className="site-card-demo-inner-p"></p>
 
-                                }}>Add</button>
+                                {/* <Card type="inner" title={eachCourse.course_name} > */}
+                                    <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                                        Credit Hours: {eachCourse.credithours} <hr />
+                         Building: {eachCourse.building} <hr />
+                         Room: {eachCourse.room} </div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                                        Total Students Enrolled: {eachCourse.studentsenrolled} <hr />
+                         Capacity: {eachCourse.capacity} <hr />
+                         Time: {eachCourse.time}
+                                    </div>
+                                    <div style={{ display: 'flex', float: 'left' }}>Professor: {eachCourse.teacher}</div>
 
-                            </tr>
+                                    <div style={{ display: 'flex', float: 'right' }}>
+                                        <button style={{ width: 'auto', height: 'auto', cursor: 'pointer', border: '1px solid green' }} onClick={() => {
+                                            const index = addcourses.findIndex((course) => course.courseid === eachCourse.courseid)
+                                            if (index === -1) {
+                                                setaddcourses([...addcourses, eachCourse])
+                                                alert('Course added to "My Favourites"');
+                                            } else {
+                                                alert("Course you are trying to add is already in 'My Favourites'.")
+                                            }
+
+                                        }}>Add to Favourites</button> </div>
+
+
+                                {/* </Card> */}
+
+                            </Card>
+                            </div>
+                            
                         )
-                    })}
-                </table>
+                    })
+                
+
             }
 
 
@@ -152,16 +107,16 @@ const Registrationtab = props => {
         )
     }
     else if (tabToload === 'Add Courses') {
-        return (<div>
-            <table style={{ width: '90%', margin: 'auto' }}>
+        return (<div >
+            <table style={{ width: '80%', margin: 'auto', backgroundColor:'#f2efe6' }}>
                 <tr>
                     <th>Course Name</th>
                     <th>Course Id</th>
                     <th>Credit Hours</th>
                     <th>Section</th>
                     <th>Time</th>
-                    <th>Building</th>
-                    <th>Room</th>
+                     
+                    
                     <th>Students Enrolled</th>
                     <th>Capacity</th>
 
@@ -171,16 +126,16 @@ const Registrationtab = props => {
                 {addcourses.map((course) => {
                     return (
                         <tr>
-                            <td style={{border:'1px solid black'}}>{course.course_name}</td>
-                            <td style={{border:'1px solid black'}}>{course.courseid}</td>
-                            <td style={{border:'1px solid black'}}>{course.credithours}</td>
-                            <td style={{border:'1px solid black'}}>{course.section}</td>
-                            <td style={{border:'1px solid black'}}>{course.time}</td>
-                            <td style={{border:'1px solid black'}}>{course.building}</td>
-                            <td style={{border:'1px solid black'}}>{course.room}</td>
-                            <td style={{border:'1px solid black'}}>{course.studentsenrolled}</td>
-                            <td style={{border:'1px solid black'}}>{course.capacity}</td>
-                            <td style={{border:'1px solid black'}}>{course.teacher}</td>
+                            <td  >{course.course_name}</td>
+                            <td  >{course.courseid}</td>
+                            <td >{course.credithours}</td>
+                            <td >{course.section}</td>
+                            <td >{course.time}</td>
+                             
+                             
+                            <td >{course.studentsenrolled}</td>
+                            <td >{course.capacity}</td>
+                            <td >{course.teacher}</td>
                             <button style={{ width: 'auto', height: 'auto' }} onClick={() => {
                                 setaddcourses(addcourses.filter((eachCourse) => eachCourse.courseid !== course.courseid))
                             }}>Remove</button>
@@ -189,15 +144,15 @@ const Registrationtab = props => {
                     )
                 })}
             </table>
-            <button onClick={() => { register() }} style={{ cursor:'pointer',height: '40px', width: 'auto', backgroundColor: '#258013', display: 'flex', color: 'white', marginRight: '6%', marginTop: '5%', float: 'right', alignItems: 'center', justifyContent: 'center' }}>
+            <button onClick={() => { register() }} style={{ cursor: 'pointer', height: '40px', width: 'auto', backgroundColor: '#258013', display: 'flex', color: 'white', marginRight: '6%', marginTop: '5%', float: 'right', alignItems: 'center', justifyContent: 'center' }}>
                 Click to Register
                 </button>
         </div>)
     }
     else if (tabToload === 'My Courses') {
         return (<div>
-             <Registeredcourses mycourses={courses}/>
-           
+            <Registeredcourses mycourses={courses} />
+
 
 
         </div>)
