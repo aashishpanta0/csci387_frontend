@@ -43,7 +43,7 @@ const Registeredcourses = props => {
             const courseInfo = props.mycourses.filter(eachCourse => eachCourse.courseid === myCoursesId.Courses_courseid)
 
             return (
-                <div style={{display:'flex', justifyContent:'center'}}>
+                <div style={{display:'flex', justifyContent:'center', backgroundColor:'#f5ebe4'}}>
                 {/* <tr> */}
                 {/*     <td style={{border:'1px solid black'}}>{courseInfo[0].course_name}</td>
                 //     <td style={{border:'1px solid black'}}>{courseInfo[0].courseid}</td>
@@ -60,7 +60,7 @@ const Registeredcourses = props => {
                 <Card type="inner"  title={courseInfo[0].course_name} style={{display:'inline-block', justifyContent:'left', alignItems:'left',width:'80%', marginTop: '5px', boxShadow: "1px 3px 1px #e4f59f"}} >
                     <p className="site-card-demo-inner-p"></p>
 
-                    {/* <Card type="inner"  title={courseInfo[0].course_name}   > */}
+                     
                         <div style={{display:'flex', justifyContent:'space-evenly'}}>
                        Credit Hours: {courseInfo[0].credithours} <hr />
                          Building: {courseInfo[0].building} <hr />

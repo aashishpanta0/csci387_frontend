@@ -3,6 +3,7 @@ import Footer from './Footer'
 import Header from './Header'
 import { Form, Input, InputNumber, Button } from 'antd';
 import { adminregistercourse } from '../routes/adminregistercourse'
+import Registrationtab from './Registrationtab'
 
 
 
@@ -61,9 +62,11 @@ const Adminregistration = props => {
     };
 
 
-    return <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}><div style={{ flexGrow: 1 }}><Header />
+    return <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}><div style={{ flexGrow: 1}}><Header />
+         
         <div style={{ display: 'flex', justifyContent: 'center', fontSize: '25px', fontFamily: 'bold' }}>Please register the courses below:</div>
-        <Form {...layout} name="nest-messages" validateMessages={validateMessages} onFinish={submitcourse}>
+        
+        <Form {...layout} name="nest-messages" validateMessages={validateMessages}  onFinish={submitcourse}>
             <Form.Item
                      
                 name="courseid"
@@ -159,6 +162,8 @@ const Adminregistration = props => {
                     </Button>
                 </Form.Item>
         </Form>
+
+        
 
 
 
