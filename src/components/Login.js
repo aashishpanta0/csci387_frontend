@@ -73,7 +73,7 @@ const Login = props => {
       return alert('Please enter a valid olemiss id');
     }
    
-     if(user!=="Student" && user!=="Department" && user!=="Teacher"){
+     if(user!=="Student" && user!=="Department"  ){
        return alert('Please select a user type.');
      }
      const formvalues={
@@ -142,7 +142,7 @@ if(loggedin){
 
               <Option value="Student">Student</Option>
               <Option value="Department">Department</Option>
-              <Option value="Teacher">Teacher</Option>
+               
 
             </Select>
             <FormControlLabel

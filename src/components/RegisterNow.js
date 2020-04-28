@@ -147,7 +147,7 @@ const submitsignup=()=>{
 
               <Option value="Student">Student</Option>
               <Option value="Department">Department</Option>
-              <Option value="Teacher">Teacher</Option>
+               
 
             </Select>
           </Grid>
