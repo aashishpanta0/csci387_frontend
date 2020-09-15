@@ -1,3 +1,4 @@
+The backend for this project is uploaded to a different directory.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
